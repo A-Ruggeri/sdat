@@ -1,0 +1,135 @@
+Database Field,Field Value,Printed Name,Group
+RACE_RECODE_W_B_AI_API,1,White,Ethnicity
+RACE_RECODE_W_B_AI_API,2,Black,Ethnicity
+RACE_RECODE_W_B_AI_API,3,American Indian/Alaska Native,Ethnicity
+RACE_RECODE_W_B_AI_API,4,Asian or Pacific Islander,Ethnicity
+ANXI_MEDICARE,1,Anxiety,Psychological Symptoms
+ANXI_MEDICARE,2,No Anxiety,Psychological Symptoms
+DEPSN_MEDICARE,1,Depression,Psychological Symptoms
+DEPSN_MEDICARE,2,No Depression,Psychological Symptoms
+ALZH_DEMEN,1,Alzheimer's (dementia) Disease,Cognitive Issues
+ALZH_DEMEN,2,No Alzheimer's (dementia) Disease,Cognitive Issues
+BRAINJ_MEDICARE,1,Brain Damage,Cognitive Issues
+BRAINJ_MEDICARE,2,No Brain Damage,Cognitive Issues
+INTDIS_MEDICARE,1,Intellectual Disabilities,Cognitive Issues
+INTDIS_MEDICARE,2,No Intellectual Disabilities,Cognitive Issues
+LEADIS_MEDICARE,1,Learning Disabilities,Cognitive Issues
+LEADIS_MEDICARE,2,No Learning Disabilities,Cognitive Issues
+ACP_MEDICARE,1,ADHD and Other Conduct Disorder,Psychological Diseases
+ACP_MEDICARE,2,No ADHD and Other Conduct Disorder,Psychological Diseases
+BIPL_MEDICARE,1,Bipolar Disorder,Psychological Diseases
+BIPL_MEDICARE,2,No Bipolar Disorder,Psychological Diseases
+PSDS_MEDICARE,1,Personality Disorders,Psychological Diseases
+PSDS_MEDICARE,2,No Personality Disorders,Psychological Diseases
+PTRA_MEDICARE,1,PTSD,Psychological Diseases
+PTRA_MEDICARE,2,No PTSD,Psychological Diseases
+SCHIOT_MEDICARE,1,Schizophrenia and Related Conditions,Psychological Diseases
+SCHIOT_MEDICARE,2,No Schizophrenia and Related Conditions,Psychological Diseases
+HEARIM_MEDICARE,1,Hearing Impairment,Decreased Sensor/Motor Skills
+HEARIM_MEDICARE,2,No Hearing Impairment,Decreased Sensor/Motor Skills
+MOBIMP_MEDICARE,1,Mobility impairment,Decreased Sensor/Motor Skills
+MOBIMP_MEDICARE,2,No Mobility impairment,Decreased Sensor/Motor Skills
+VISUAL_MEDICARE,1,Visual impairment,Decreased Sensor/Motor Skills
+VISUAL_MEDICARE,2,No Visual impairment,Decreased Sensor/Motor Skills
+MARITAL_STATUS_AT_DIAGNOSIS,1,Single (never married),Marrital Status
+MARITAL_STATUS_AT_DIAGNOSIS,2,Married (includes common law),Marrital Status
+MARITAL_STATUS_AT_DIAGNOSIS,3,Separated,Marrital Status
+MARITAL_STATUS_AT_DIAGNOSIS,4,Divorced,Marrital Status
+MARITAL_STATUS_AT_DIAGNOSIS,5,Widowed,Marrital Status
+ALCO_MEDICARE,1,Alcohol use,Lifestyle Status
+DRUG_MEDICARE,1,Drug use,Lifestyle Status
+OUD_ANY_MEDICARE,1,Opioid drug use,Lifestyle Status
+OUD_MAT_MEDICARE,1,Opioid use for MAT,Lifestyle Status
+TOBA_MEDICARE,1,Tobacco use,Lifestyle Status
+RURAL_URBAN_CONTINUUM_CODE_2003,1,Metro area,Living Status
+RURAL_URBAN_CONTINUUM_CODE_2003,2,Urban area,Living Status
+RURAL_URBAN_CONTINUUM_CODE_2003,3,Completely Rural area,Living Status
+MEDS_SWITCHED,true,OET medication switched,Medication Regimen
+RX_SUMM_SYSTEMIC_SURG_SEQ,0,No systemic chemo and/or surgical therapy,Systemic & Surgical Therapy
+RX_SUMM_SYSTEMIC_SURG_SEQ,2,Systemic therapy before surgery,Systemic & Surgical Therapy
+RX_SUMM_SYSTEMIC_SURG_SEQ,3,Systemic therapy after surgery,Systemic & Surgical Therapy
+RX_SUMM_SYSTEMIC_SURG_SEQ,4,Systemic therapy both before and after surgery,Systemic & Surgical Therapy
+RX_SUMM_SYSTEMIC_SURG_SEQ,5,Intraoperative systemic therapy,Systemic & Surgical Therapy
+RX_SUMM_SYSTEMIC_SURG_SEQ,6,Intraoperative systemic therapy with other therapy,Systemic & Surgical Therapy
+RX_SUMM_SYSTEMIC_SURG_SEQ,7,Surgery both before and after systemic therapy,Systemic & Surgical Therapy
+RX_SUMM_SYSTEMIC_SURG_SEQ,9,"Sequence unknown, surgery & systemic therapy given",Systemic & Surgical Therapy
+RX_SUMM_SURG_RAD_SEQ,0,No radiation and /or surgery,Radiation & Surgical Therapy
+RX_SUMM_SURG_RAD_SEQ,2,Radiation before surgery,Radiation & Surgical Therapy
+RX_SUMM_SURG_RAD_SEQ,3,Radiation after surgery,Radiation & Surgical Therapy
+RX_SUMM_SURG_RAD_SEQ,4,Radiation both before and after surgery,Radiation & Surgical Therapy
+RX_SUMM_SURG_RAD_SEQ,5,Intraoperative radiation,Radiation & Surgical Therapy
+RX_SUMM_SURG_RAD_SEQ,6,Intraoperative radiation with other radiation given,Radiation & Surgical Therapy
+RX_SUMM_SURG_RAD_SEQ,7,Surgery both before and after radiation,Radiation & Surgical Therapy
+RX_SUMM_SURG_RAD_SEQ,9,"Sequence unknown, surgery & radiation given",Radiation & Surgical Therapy
+DRUG_THER_CHG_NUM,1,1st DTP,Number of Drug Therapy Problems
+DRUG_THER_CHG_NUM,2,2nd DTP,Number of Drug Therapy Problems
+DRUG_THER_CHG_NUM,3,3rd DTP,Number of Drug Therapy Problems
+DRUG_THER_CHG_NUM,4,4th DTP,Number of Drug Therapy Problems
+COMBINED_SUMMARY_STAGE_2004,1,Stage I,Disease Characteristics
+COMBINED_SUMMARY_STAGE_2004,2,Stage II,Disease Characteristics
+COMBINED_SUMMARY_STAGE_2004,7,Stage III,Disease Characteristics
+COMBINED_SUMMARY_STAGE_2004,9,Stage IV,Disease Characteristics
+AMI,1,AMI,Comorbidity
+AMI,2,No AMI,Comorbidity
+ANEMIA,1,Anemia,Comorbidity
+ANEMIA,2,No Anemia,Comorbidity
+ASTHMA,1,Asthma,Comorbidity
+ASTHMA,2,No Asthma,Comorbidity
+CHF,1,CHF,Comorbidity
+COPD,1,COPD,Comorbidity
+CHRONICKIDNEY,1,CKD,Comorbidity
+DIABETES,1,Diabetes,Comorbidity
+EPILEP_MEDICARE,1,Epilepsy,Comorbidity
+FIBRO_MEDICARE,1,Fibromyalgia Chronic Pain and Fatigue,Comorbidity
+HEPVIRAL_MEDICARE,1,Hepatitis (Viral),Comorbidity
+HIP_FRACTURE,1,Hip Fracture,Comorbidity
+HIVAIDS_MEDICARE,1,HIV/AIDS,Comorbidity
+HYPERL,1,Hyperlipidemia,Comorbidity
+HYPERL,2,No Hyperlipidemia,Comorbidity
+HYPERT,1,Hypertension,Comorbidity
+HYPERT,2,No Hypertension,Comorbidity
+HYPOTH,1,Hypothyroid,Comorbidity
+LEUKLYMPH_MEDICARE,1,Leukemia and lymphomas,Comorbidity
+LIVER_MEDICARE,1,Liver Diseases,Comorbidity
+MIGRAINE_MEDICARE,1,Migraine and Other Chronic Headache,Comorbidity
+OBESITY_MEDICARE,1,Obesity,Comorbidity
+OSTEOPOROSIS,1,Osteoporosis,Comorbidity
+PVD_MEDICARE,1,PVD,Comorbidity
+SPIINJ_MEDICARE,1,Spinal Injury,Comorbidity
+ULCERS_MEDICARE,1,Ulcers,Comorbidity
+CMR_OFFERED,n,CMR Not Offered,CMR Review
+CMR_PROVIDER,1,CMR Provider-Physician,CMR Reviewer Type
+CMR_PROVIDER,2,CMR Provider-Registered Nurse,CMR Reviewer Type
+CMR_PROVIDER,3,CMR Provider-Licensed practical nurse,CMR Reviewer Type
+CMR_PROVIDER,6,CMR Provider-Pharmacist,CMR Reviewer Type
+CARR_LINE_PRVDR_TYPE_CD,0,Group Practitioners in Clinic,Provider Partnership Status
+CARR_LINE_PRVDR_TYPE_CD,1,Solo Practitioners,Provider Partnership Status
+CARR_LINE_PRVDR_TYPE_CD,3,Institution Providers (share patients),Provider Partnership Status
+LINE_COINSRNC_AMT,1,Coinsurance $20-40,Coinsurance & Deductible Status
+LINE_COINSRNC_AMT,2,Coinsurance $40-60,Coinsurance & Deductible Status
+LINE_COINSRNC_AMT,3,Coinsurance $60-80,Coinsurance & Deductible Status
+LINE_COINSRNC_AMT,4,Coinsurance $80-100,Coinsurance & Deductible Status
+LINE_SERVICE_DEDUCTIBLE,0,Subject to Deductible,Coinsurance & Deductible Status
+AGE_CODE_GROUP,0,0 to 64 years old,Age
+AGE_CODE_GROUP,1,65 to 74 years old,Age
+AGE_CODE_GROUP,2,75 to 84 years old,Age
+AGE_CODE_GROUP,3,85 to 99 years old,Age
+GNN_ENUM,0,ANASTROZOLE,Generic Drug Name
+GNN_ENUM,1,EXEMESTANE,Generic Drug Name
+GNN_ENUM,2,LETROZOLE,Generic Drug Name
+GNN_ENUM,3,RIBOCICLIB SUCCINATE LETROZOLE,Generic Drug Name
+GNN_ENUM,4,TAMOXIFEN CITRATE,Generic Drug Name
+GNN_ENUM,5,Unknown,Generic Drug Name
+YEAR_OF_DIAGNOSIS,2010,2010,Year of Diagnosis
+YEAR_OF_DIAGNOSIS,2011,2011,Year of Diagnosis
+YEAR_OF_DIAGNOSIS,2012,2012,Year of Diagnosis
+YEAR_OF_DIAGNOSIS,2013,2013,Year of Diagnosis
+YEAR_OF_DIAGNOSIS,2014,2014,Year of Diagnosis
+YEAR_OF_DIAGNOSIS,2015,2015,Year of Diagnosis
+YEAR_OF_DIAGNOSIS,2016,2016,Year of Diagnosis
+YEAR_OF_DIAGNOSIS,2017,2017,Year of Diagnosis
+YEAR_OF_DIAGNOSIS,2018,2018,Year of Diagnosis
+YEAR_OF_DIAGNOSIS,2019,2019,Year of Diagnosis
+YEAR_OF_DIAGNOSIS,2020,2020,Year of Diagnosis
+YEAR_OF_DIAGNOSIS,2021,2021,Year of Diagnosis
+YEAR_OF_DIAGNOSIS,2022,2022,Year of Diagnosis

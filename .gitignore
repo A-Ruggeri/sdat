@@ -1,0 +1,6 @@
+# Ignore text files
+*.txt
+
+# remove IDE stuff
+__pycache__/
+.idea/
