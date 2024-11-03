@@ -1,5 +1,8 @@
-# Ignore text files
+# Ignore test files
 *.txt
+*.json
+test*.*
+*.csv
 
 # remove IDE stuff
 __pycache__/
