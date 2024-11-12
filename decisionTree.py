@@ -21,9 +21,11 @@ class DecisionTree(mongoHelper.MongoHelper):
         # Change from default values based on json
         self.__dict__.update(kwargs)
 
-        # Override based on provided json info
-        #for k, v in dictionary.items():
-            #setattr(self, k, v)
+    def __str__(self):
+        """
+        Override the string function for this class
+        """
+        return f"<Decision Tree:\n\tMax Tree Depth: {self.maxTreeDepth}>\n\tMin Split Number: {self.minSplitNum}\n\tMax Feature: {self.maxFeatures}"
 
 
     def setMaxTreeDepth(self, depth):
@@ -91,7 +93,7 @@ class DecisionTree(mongoHelper.MongoHelper):
     # ------------------------------------------------------------------
     # decisionTree
     # ------------------------------------------------------------------
-    def calculate(self):
+    def calculate(self, outputFolder):
         """
         Create a decision tree.
         Returns: tree
@@ -110,6 +112,7 @@ class DecisionTree(mongoHelper.MongoHelper):
 
         # nada tada!
         tree.plot_tree(dtree, feature_names=features)
+        # tree.export_graphviz()
 
         #hmm
         plt.figure(figsize=(30, 10), facecolor='k')
@@ -119,8 +122,12 @@ class DecisionTree(mongoHelper.MongoHelper):
                            filled=True,
                            fontsize=14)
         plt.show()
+        plt.savefig(outputFolder + "/plot.png")
 
         # or
         tree_rules = tree.export_text(dtree,  feature_names=list(features))
         print(tree_rules)
+
+        return tree
+
 

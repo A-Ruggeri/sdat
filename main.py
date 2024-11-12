@@ -4,7 +4,7 @@
 import sys
 import os
 from jsonParser import jsonParser
-#from textParser import textParser
+from textParser import textParser
 
 # ------------------------------------------------------------------
 # Script Start
@@ -31,7 +31,7 @@ if filePath.endswith(".json"):
 # if the file
 elif filePath.endswith(".txt"):
     print("text file")
-    #textParser(filePath)
+    textParser(filePath)
 
 
 # Everything looks good, return and exit

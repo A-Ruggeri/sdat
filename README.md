@@ -21,7 +21,7 @@ The following is an example of a json configuration file used for tuning a decis
     "ip": "localhost",
     "port": "27017"
   },
-  "DecisionTree": {
+  "decisionTree": {
     "maxTreeDepth": 3,
     "maxFeatures": 2
   }
@@ -34,6 +34,14 @@ Arguments depend on the
 
 ## Logistic Regression
 
+## Output
+Sets the location and parameters for where the resulting output files should be saved
+
+| Name       | option | Description                                        |
+|------------|--------|----------------------------------------------------|
+| saveJson   | 0,1    | Save the JSON file used alone with the output data |
+| directory  | text   | Directory location to save output data             |
+| timestamp  | 0,1    | Append timestamp to output directory name          | 
 
 ## Dependencies
 some dependencies you can avoid 

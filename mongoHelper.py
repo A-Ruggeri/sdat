@@ -1,6 +1,6 @@
 # imports
 import pymongo
-import v
+import pandas
 import numpy
 import dataNameHelper
 
@@ -8,13 +8,13 @@ class MongoBase:
     """
     singleton class to handle connection to MongoDB server.
     """
-    def __new__(cls):
+    def __new__(cls, **kwargs):
         if not hasattr(cls, 'instance'):
             cls.instance = super(MongoBase, cls).__new__(cls)
         return cls.instance
 
 
-    def __init__(self):
+    def __init__(self,  **kwargs):
         print("monobase")
         # Try/catch connection to database
         # try:
@@ -35,7 +35,7 @@ class MongoHelper(MongoBase):
     """
     class to handle reading data from MongoDB.
     """
-    def __init__(self):
+    def __init__(self, **kwargs):
         super(MongoHelper, self).__init__()
         #super().__init__()
 
