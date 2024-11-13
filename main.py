@@ -25,16 +25,18 @@ if not os.path.isfile(filePath):
 
 # if the file is JSON
 if filePath.endswith(".json"):
-    print("json file")
+    print(f'json File: {filePath}')
     jsonParser(filePath)
 
 # if the file
 elif filePath.endswith(".txt"):
-    print("text file")
+    print(f'Text File: {filePath}')
     textParser(filePath)
 
+else:
+    print("File type not supported")
+    exit(-1)
 
 # Everything looks good, return and exit
+print("~Et Fin~")
 exit(0)
-
-

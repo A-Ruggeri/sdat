@@ -47,9 +47,9 @@ def jsonParser(filename):
 
         # save Json too?
         if "saveJson" in outData:
-            print("DO NOTHING FOR NOW")
             with open(outputDirectory + "/config.json", 'w+') as f:
                 f.write(json.dumps(jsonDict, indent=4))
+
 
     # Calculate and save
     dt.calculate(outputDirectory)
