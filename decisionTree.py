@@ -15,7 +15,7 @@ class DecisionTree(mongoHelper.MongoHelper):
         # Default tuning parameters
         self.precTrain = 30
         self.maxTreeDepth = 3
-        self.minSplitNum = -1
+        self.minSplitNum = 2
         self.maxFeatures = 1
 
         # Change from default values based on json
@@ -106,27 +106,46 @@ class DecisionTree(mongoHelper.MongoHelper):
         y = self.dataFrame['PDC_NON_ADHR']
 
 
+        # Create the model
         dtree = DecisionTreeClassifier(max_depth = self.maxTreeDepth,
+                                       min_samples_split = self.minSplitNum,
                                        max_features = self.maxFeatures)
         dtree = dtree.fit(X, y)
 
-        # nada tada!
+        # Do we need to save the tree model as well?
+
+
+        # Create graphviz
         tree.plot_tree(dtree, feature_names=features)
         # tree.export_graphviz()
 
-        #hmm
+
+        # Create matlibplot
         plt.figure(figsize=(30, 10), facecolor='k')
         a = tree.plot_tree(dtree,
                            feature_names=features,
                            rounded=True,
                            filled=True,
                            fontsize=14)
-        plt.show()
-        plt.savefig(outputFolder + "/plot.png")
+        if outputFolder is not None:
+            plt.savefig(outputFolder + "/pyplotTree.png",
+                        facecolor="w",
+                        dpi = 320)
+            plt.close()
+        else:
+            plt.show()
 
-        # or
-        tree_rules = tree.export_text(dtree,  feature_names=list(features))
-        print(tree_rules)
+
+        # Tree text output
+        tree_rules = tree.export_text(dtree, feature_names=list(features))
+        if outputFolder is not None:
+            with open(outputFolder + "/tree_rules.txt", 'w+') as f:
+                f.write(tree_rules)
+                f.close()
+        else:
+            print(tree_rules)
+
+
 
         return tree
 
