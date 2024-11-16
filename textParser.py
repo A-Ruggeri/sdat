@@ -1,4 +1,4 @@
-import decisionTree
+# import decisionTree
 
 
 def textParser(filePath):
@@ -6,7 +6,7 @@ def textParser(filePath):
     lines = cmdFile.readlines()
 
     # Create decisionTree
-    dt = decisionTree.DecisionTree()
+    # dt = decisionTree.DecisionTree()
 
     databaseLoad = dict()
 
@@ -16,7 +16,8 @@ def textParser(filePath):
         # it's Binary
         # ----------------------------------------------------------
         if (len(cmds) == 3) or (len(cmds) == 4):  # hack allow 4 and just drop the 'CAT'
-            dt.addIndependantVar(cmds[0], cmds[1], cmds[2])
+            print('temp')
+            # dt.addIndependantVar(cmds[0], cmds[1], cmds[2])
             # fieldpar = (cmds[1], cmds[2])
             # collectionFieldList = [fieldpar]
             #
@@ -33,5 +34,5 @@ def textParser(filePath):
             print("reject current line")
 
     # All done, it's more fun to compute
-    dt.calculate()
+    # dt.calculate()
     return True

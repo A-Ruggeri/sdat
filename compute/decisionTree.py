@@ -1,13 +1,14 @@
 #import
-import mongoHelper
+import compute.computeBase
 import pandas
 from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 import matplotlib.pyplot as plt
 
 
-class DecisionTree(mongoHelper.MongoHelper):
-    def __init__(self,  **kwargs):
+
+class DecisionTree(compute.computeBase.computeBase):
+    def __init__(self, **kwargs):
         super(DecisionTree, self).__init__()
 
         print("Decision Tree")
