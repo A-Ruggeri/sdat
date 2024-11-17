@@ -5,6 +5,7 @@ from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 import matplotlib.pyplot as plt
 
+from compute.dataInput.dataObjFactory import dataObjFactory
 
 
 class DecisionTree(compute.computeBase.computeBase):
@@ -100,11 +101,19 @@ class DecisionTree(compute.computeBase.computeBase):
         Returns: tree
         """
 
-        # All the added terms, are the features we want to base the tree off of
-        features = list(self.searchDict.keys())
+        dof = dataObjFactory()
+        if dof.isInitiated() is False:
+            print("No data source set up, can not calculate decision tree.")
+            return
 
-        X = self.dataFrame[features]
-        y = self.dataFrame['PDC_NON_ADHR']
+        dataSource = dof.getDataInputSource()
+
+
+        # All the added terms, are the features we want to base the tree off of
+        features = list(dataSource.searchDict.keys())
+
+        X = dataSource.dataFrame[features]
+        y = dataSource.dataFrame['PDC_NON_ADHR']
 
 
         # Create the model

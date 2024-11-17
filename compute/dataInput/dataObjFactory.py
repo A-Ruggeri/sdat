@@ -38,6 +38,8 @@ class dataObjFactory:
 
         self.__inited = True
 
+    def isInitiated(self):
+        return self.__inited
 
     def getDataInputSource(self):
         if self.__inited is True:
