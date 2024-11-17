@@ -44,7 +44,6 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
         self.dataFrame.set_index('PIDS', verify_integrity=True, drop=True, inplace=True)
 
         self.__dnh = dataNameHelper.dataNameHelper()
-        self.searchDict = dict()
 
         print(f"\tPDC PIDS: {len(self.dataFrame.index)}")
 
@@ -60,7 +59,7 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
         Args:
             collName (str): Collection Name
             field (str): field name
-            binningParam (str): True/positive conditions string
+            binningParam (str): True/positive conditions string (if field's value matches param, will set data value as true)
         Returns: none
         """
         print("----------------------------------------------------")
@@ -94,17 +93,20 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
 
 
 
-    # ------------------------------------------------------------------
-    # addCategoricalIndependantVar
-    #   This should/could be merged with the addIndependantVar
-    # ------------------------------------------------------------------
-    def addCategoricalIndependantVar(self, collName, field, posSearch):
+    def addCategoricalIndependantVar(self, collName, field, allowedVals):
+        """ Add an additional column of data. override from base class
+        Args:
+            collName (str): Collection Name
+            field (str): field name
+            allowedVals (str): Allowed cat values, helps filter erronous/unwanted values
+        Returns: none
+        """
         print("----------------------------------------------------")
-        print(f"Categorically Adding {field} in {collName} with {posSearch}")
+        print(f"Categorically Adding {field} in {collName} with {allowedVals}")
 
         dfFieldName = field #+ '_' + posSearch.replace('\n', '').replace(',', '_')
         self.searchDict[dfFieldName] = dfFieldName
-        posSearch = posSearch.replace('\n', '').split(',')
+        allowedVals = allowedVals.replace('\n', '').split(',')
 
 
         collcFields = self.__db[collName]
@@ -117,7 +119,7 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
             value = str(record[field])
 
             # check for duplicates while we do this
-            if str(record[field]) in posSearch:
+            if str(record[field]) in allowedVals:
                 self.dataFrame._set_value(pid, dfFieldName, value)
             # else:
             #     self.__dataFrame._set_value(pid, dfFieldName, "OTHER")
