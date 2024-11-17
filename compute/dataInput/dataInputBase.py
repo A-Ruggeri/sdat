@@ -1,3 +1,5 @@
+# imports
+import pandas
 
 class dataInputBase:
     # """
@@ -11,23 +13,16 @@ class dataInputBase:
 
     def __init__(self,  jsonConfig: dict, **kwargs):
         print("data input base")
-        classTypeName = "base"
-        # Try/catch connection to database
-        # try:
-        #     self.__client = pymongo.MongoClient('localhost', 27017, serverSelectionTimeoutMS=5000)
-        #     self.__client.server_info()
-        #
-        # except pymongo.errors.ServerSelectionTimeoutError as err:
-        #     print("Failed to connect to Mongod service")
-        #     return
-        #
-        # self.__db = self.__client['seer']
-        # self.collcPdcMpr = self.__db['PDESAF_pdc_mpr_results']
+
+        self.searchDict = dict()    # dict to field names : field named + query settings
+        self.dataFrame: pandas.DataFrame    # primary dataframe
 
 
     def addIndependantVar(self, collName, field, binningParam):
         print("addIndependantVar")
 
+    def addCategoricalIndependantVar(self, collName, field, allowedVals):
+        print("addCategoricalIndependantVar")
+
     def classType(self):
         print(f'{self.__class__.__name__} class type')
-        print(f'{self.classTypeName}')

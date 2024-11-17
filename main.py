@@ -3,24 +3,26 @@
 # Imports
 import sys
 import os
+from compute.loging import printError, printInfo
 from jsonParser import jsonParser
 from textParser import textParser
+
 
 # ------------------------------------------------------------------
 # Script Start
 # ------------------------------------------------------------------
 if len(sys.argv) != 2:
-    print("Need: <file>")
+    printError("Need configuration file")
     exit(-1)
 
 
 # ------------------------------------------------------------------
 filePath = sys.argv[1]
-print(f'Running: {filePath}')
+printInfo(f'Running: {filePath}')
 
 # Check if file exists
 if not os.path.isfile(filePath):
-    print("File not found")
+    printError("File not found")
     exit(-1)
 
 # if the file is JSON
@@ -34,7 +36,7 @@ elif filePath.endswith(".txt"):
     textParser(filePath)
 
 else:
-    print("File type not supported")
+    printError("File type not supported")
     exit(-1)
 
 # Everything looks good, return and exit

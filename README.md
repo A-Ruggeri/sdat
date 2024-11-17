@@ -18,9 +18,11 @@ The following is an example of a json configuration file used for tuning a decis
 
 ```json
 {
-  "mongo": {
-    "ip": "localhost",
-    "port": "27017"
+  "dataSource": {
+    "mongoDb": {
+      "ip": "localhost",
+      "port": "27017"
+    }
   },
   "decisionTree": {
     "maxTreeDepth": 3,
@@ -28,6 +30,19 @@ The following is an example of a json configuration file used for tuning a decis
   }
 }
 ```
+## dataSource
+Sets where the data will be pulled from
+
+### mongoDb
+pull data from mongo db
+
+| Name | Options             | Description |
+|------|---------------------|-------------|
+| ip   | "IP Address String" |             |
+| port | int                 |             |
+
+### csvFile
+pull data from csv file
 
 ## Decision Tree
 Arguments depend on the 
