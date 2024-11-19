@@ -12,8 +12,6 @@ class dataInputBase:
 
 
     def __init__(self,  jsonConfig: dict, **kwargs):
-        print("data input base")
-
         self.searchDict = dict()    # dict to field names : field named + query settings
         self.dataFrame: pandas.DataFrame    # primary dataframe
 
