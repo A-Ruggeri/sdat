@@ -2,9 +2,8 @@
 import pymongo
 import pandas
 import numpy
-import dataNameHelper
 import compute.dataInput.dataInputBase
-
+from compute.loging import printError
 
 
 class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
@@ -15,12 +14,23 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
         super(dataMongoDb, self).__init__(jsonConfig)
         #super().__init__()
 
+        # default connection values, assume running locally
+        mongodbIp = "localhost"
+        mongodbPort = 27017
+
+        # Grab values from json, if present
+        if "ip" in jsonConfig:
+            mongodbIp = jsonConfig["ip"]
+
+        if "port" in jsonConfig:
+            mongodbPort = jsonConfig["port"]
+
         try:
-            self.__client = pymongo.MongoClient('localhost', 27017, serverSelectionTimeoutMS=5000)
+            self.__client = pymongo.MongoClient(mongodbIp, port = mongodbPort, serverSelectionTimeoutMS=5000)
             self.__client.server_info()
 
         except pymongo.errors.ServerSelectionTimeoutError as err:
-            print("Failed to connect to Mongod service")
+            printError("Failed to connect to Mongod service")
             return
 
         self.__db = self.__client['seer']
@@ -43,7 +53,6 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
             {'PIDS': list(pdcValues.keys()), 'PDC_NON_ADHR': list(list(pdcValues.values()))})
         self.dataFrame.set_index('PIDS', verify_integrity=True, drop=True, inplace=True)
 
-        self.__dnh = dataNameHelper.dataNameHelper()
 
         print(f"\tPDC PIDS: {len(self.dataFrame.index)}")
 
@@ -83,12 +92,6 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
             else:
                 self.dataFrame._set_value(pid, dfFieldName, 0)
 
-        # Remove duplicates from list of common pids to avoid them getting added then later removed
-        # for dupPid in self.__duplicatePids:
-        #     self.__dataFrame.drop(dupPid)
-        #     self.__commonPids.remove(dupPid)    # is this needed any more?
-
-        # if there is missing data (aka NaN) for a pid drop it
         print(f'\tDone:')
 
 
