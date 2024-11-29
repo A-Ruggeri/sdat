@@ -7,14 +7,19 @@ from compute.dataInput.dataInputBase import dataInputBase
 
 
 class dataCsvFile(dataInputBase):
+
+    sourceName = "csvFile"
+
+
     def __init__(self, jsonConfig: dict, **kwargs):
-        print("CSV File Source")
         super(dataCsvFile, self).__init__(jsonConfig)
 
+
+    def addData(self, dataDict: dict):
         filePath = ""
 
         # Change from default values based on json
-        self.__dict__.update(kwargs)
+        self.__dict__.update(dataDict)
 
         if filePath == "":
             printError("CSV File Path Not Provided")
@@ -26,6 +31,7 @@ class dataCsvFile(dataInputBase):
 
         # let's try to read it
         self.dataframe = pandas.read_csv(filePath)
+
 
 
 

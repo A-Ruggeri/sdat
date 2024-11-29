@@ -27,7 +27,7 @@ class dataObjFactory:
     def createDataSource(self, jsonDataDict: dict):
         print("Creating Data Source")
         if "mongoDb" in jsonDataDict:
-            self.__dataInputSource = compute.dataInput.dataMongoDb.dataMongoDb(jsonDataDict["mongoDb"])
+            self.__dataInputSource = compute.dataInput.dataMongoDb.dataMongoDb(jsonDataDict)
 
         elif "csvFile" in jsonDataDict:
             self.__dataInputSource = compute.dataInput.dataCsvFile.dataCsvFile(jsonDataDict["csvFile"])
