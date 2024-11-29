@@ -131,7 +131,11 @@ class DecisionTree(compute.computeBase.computeBase):
 
 
         # Create matlibplot
-        plt.figure(figsize=(30, 10), facecolor='k')
+
+        # Adjust plotsize based on max_depth
+        plot_width = 10 * self.maxTreeDepth
+        plot_height = 5 * self.maxTreeDepth
+        plt.figure(figsize=(plot_width, plot_height))
         a = tree.plot_tree(dtree,
                            feature_names=features,
                            rounded=True,
@@ -140,7 +144,7 @@ class DecisionTree(compute.computeBase.computeBase):
         if outputFolder is not None:
             plt.savefig(outputFolder + "/pyplotTree.png",
                         facecolor="w",
-                        dpi = 320)
+                        dpi = 480)
             plt.close()
         else:
             plt.show()
