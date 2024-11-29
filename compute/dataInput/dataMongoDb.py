@@ -10,23 +10,29 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
     """
     class to handle reading data from MongoDB.
     """
+
+    sourceName = "mongoDb"
+
     def __init__(self, jsonConfig: dict, **kwargs):
         super(dataMongoDb, self).__init__(jsonConfig)
-        #super().__init__()
 
+
+
+    def setupSource(self, sourceDict: dict):
         # default connection values, assume running locally
         mongodbIp = "localhost"
         mongodbPort = 27017
 
         # Grab values from json, if present
-        if "ip" in jsonConfig:
-            mongodbIp = jsonConfig["ip"]
+        if "ip" in sourceDict:
+            mongodbIp = sourceDict["ip"]
 
-        if "port" in jsonConfig:
-            mongodbPort = jsonConfig["port"]
+        if "port" in sourceDict:
+            mongodbPort = sourceDict["port"]
 
+        # Connect to Mongo Server
         try:
-            self.__client = pymongo.MongoClient(mongodbIp, port = mongodbPort, serverSelectionTimeoutMS=5000)
+            self.__client = pymongo.MongoClient(mongodbIp, port=mongodbPort, serverSelectionTimeoutMS=5000)
             self.__client.server_info()
 
         except pymongo.errors.ServerSelectionTimeoutError as err:
@@ -35,7 +41,6 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
 
         self.__db = self.__client['seer']
         self.collcPdcMpr = self.__db['PDESAF_pdc_mpr_results']
-
 
         print("\tGet PIDS for PDC")
         pdcValues = dict()
@@ -53,13 +58,17 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
             {'PIDS': list(pdcValues.keys()), 'PDC_NON_ADHR': list(list(pdcValues.values()))})
         self.dataFrame.set_index('PIDS', verify_integrity=True, drop=True, inplace=True)
 
-
         print(f"\tPDC PIDS: {len(self.dataFrame.index)}")
 
-        # populate the database based if provided through the JSON info
-        if "test" in kwargs.keys():
-            print("found in kwargs")
 
+
+    def addData(self, dataDict: dict):
+        print("Add Data")
+
+        for col in dataDict:
+            for field in dataDict[col]:
+                for featureName, catagoryStr in field.items():  # this is just 1 element, not sure if needed
+                    self.addIndependantVar(col, featureName, catagoryStr)
 
 
 
@@ -132,16 +141,3 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
 
         # if there is missing data (aka NaN) for a pid drop it
         print(f'\tDone:')
-
-
-
-    def addFieldCollectionGroup(self, collectionName, fieldGroup):
-        """
-        Add group of fields within a collection.
-        Args:
-            collectionName (str): Name of the collection
-            fieldGroup (): a tuple list of fields and their binning parameters
-                [(fieldA, "a,b,c"), (fieldB, "x,y,z"), ect]
-
-        Returns: NONE
-        """
