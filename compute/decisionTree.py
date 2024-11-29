@@ -14,7 +14,6 @@ class DecisionTree(compute.computeBase.computeBase):
         print("Decision Tree")
 
         # Default tuning parameters
-        self.precTrain = 30
         self.maxTreeDepth = 3
         self.minSplitNum = 2
         self.maxFeatures = 1

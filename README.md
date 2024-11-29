@@ -49,6 +49,15 @@ pull data from csv file
 |----------|-------|------------------|
 | filePath | str   | Path to CSV file |
 
+### data
+
+### training
+| Name       | Value | Description                                        |
+|------------|-------|----------------------------------------------------|
+| split      | int   | Percentage of data to allocate for testing         |
+| randomSeed | int   | Provide fixed seed value for deterministic results |
+
+
 ## Computation Method To Run
 The next element is for a computation to run with the provided data based on the datasource.
 
@@ -56,10 +65,11 @@ The next element is for a computation to run with the provided data based on the
 ### Decision Tree
 Arguments depend on the 
 
-| Name         | Value   | Description                      |
-|--------------|---------|----------------------------------|
-| maxTreeDepth | int     | Tree depth                       |
-| maxFeatures  | int     | Max number of feature to be used |
+| Name         | Value | Description                                         |
+|--------------|-------|-----------------------------------------------------|
+| maxTreeDepth | int   | Tree depth                                          |
+| maxFeatures  | int   | Max number of feature to be used                    |
+| randomSeed   | int   | Provide fixed seed value for deterministic results  |
 
 ### Logistic Regression
 
