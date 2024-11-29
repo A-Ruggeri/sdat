@@ -6,8 +6,9 @@ import json
 import pathlib
 from datetime import datetime
 from compute.dataInput.dataObjFactory import dataObjFactory
-import compute.decisionTree
 import compute.computeBase
+import compute.decisionTree
+import compute.neuralNetwork
 
 
 def jsonParser(filename):
@@ -20,20 +21,6 @@ def jsonParser(filename):
     dof.createDataSource(jsonDict["dataSource"])
     dof.getDataInputSource()
 
-    if "dataCategorical" in jsonDict.keys():
-        dataData = jsonDict["dataCategorical"]
-        for col in dataData:
-            for field in dataData[col]:
-                for featureName, catagoryStr in field.items():  # this is just 1 element, not sure if needed
-                    dof.getDataInputSource().addCategoricalIndependantVar(col, featureName, catagoryStr)
-
-    if "data" in jsonDict.keys():
-        dataData = jsonDict["data"]
-        for col in dataData:
-            for field in dataData[col]:
-                for featureName, catagoryStr in field.items():  # this is just 1 element, not sure if needed
-                    dof.getDataInputSource().addIndependantVar(col, featureName, catagoryStr)
-
 
 
     # Form Computation Type
@@ -41,6 +28,9 @@ def jsonParser(filename):
 
     if "decisionTree" in jsonDict.keys():
         compElement = compute.decisionTree.DecisionTree(**jsonDict["decisionTree"])
+
+    elif "neuralNetwork" in jsonDict.keys():
+        compElement = compute.neuralNetwork.NeuralNetwork(**jsonDict["neuralNetwork"])
 
 
 
@@ -72,7 +62,11 @@ def jsonParser(filename):
 
 
 
-    # # Calculate and save
+    # Calculate and save
     compElement.calculate(outputDirectory)
 
+    # Test the model
+    compElement.test()
+
+    # Now Done
     return True

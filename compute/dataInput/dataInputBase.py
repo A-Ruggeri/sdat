@@ -20,8 +20,8 @@ class dataInputBase:
         self.dataFrame: pandas.DataFrame        # primary dataframe, holds all data read from database
         self.X_train: pandas.DataFrame
         self.X_test: pandas.DataFrame
-        self.y_train
-        self.y_test
+        self.y_train = None
+        self.y_test = None
 
         self.trainingFrame: pandas.DataFrame    # Training dataframe
         self.testingFrame: pandas.DataFrame     # Testing dataframe

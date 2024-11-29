@@ -1,12 +1,28 @@
 #imports
+import compute.dataInput.dataObjFactory
+from compute.loging import printInfo
+
 
 class computeBase():
     """
     base class for compute classes
     """
     def __init__(self, **kwargs):
-        print("")
 
-    def compute(self, outputDirectory: str) -> bool:
-        print("it's more fun to compute")
-        return False
+        # Get datasource
+        self.dataSource = None
+
+        dof = compute.dataInput.dataObjFactory.dataObjFactory()
+        if dof.isInitiated() is False:
+            print("No data source set up, can not calculate decision tree.")
+            return
+
+        self.dataSource = dof.getDataInputSource()
+
+
+    def compute(self, outputDirectory: str):
+        printInfo("it's more fun to compute")
+
+
+    def test(self):
+        printInfo("Testing Model")
