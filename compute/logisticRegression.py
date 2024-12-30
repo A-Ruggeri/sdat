@@ -22,12 +22,6 @@ class LogisticRegression(compute.computeBase.computeBase):
         return f"Logistic Regression: {self.__dict__}"
 
 
-    def calculate(self):
-        """
-        Calculates logistic regression coefficients
-        Returns: IDK
-        """
-
 
     # ------------------------------------------------------------------
     # __createFormulaString
@@ -48,7 +42,7 @@ class LogisticRegression(compute.computeBase.computeBase):
         return blrFormulaStr[:-3]  # trailing '+ ' can be cut via substring
 
 
-    def computeBLR(self):
+    def calculate(self):
         print(".......................................................")
         print("\tComputing...BEEP BEEP BEEP")
 
@@ -190,10 +184,3 @@ class LogisticRegression(compute.computeBase.computeBase):
 
 
 
-    def clearIndependantVars(self):
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        print("\tRemoving: Old Independent Vars")
-
-        for colName in self.__dataFrame.columns[1:]:
-            print(f'\tSo Long: {colName}')
-            self.__dataFrame.drop(colName, axis=1, inplace=True)

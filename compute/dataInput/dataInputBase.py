@@ -40,22 +40,25 @@ class dataInputBase:
             self.splitData(jsonConfig["training"])
 
 
-
-
     def addIndependantVar(self, collName, field, binningParam):
         print("addIndependantVar")
+
 
     def addCategoricalIndependantVar(self, collName, field, allowedVals):
         print("addCategoricalIndependantVar")
 
+
     def classType(self):
         print(f'{self.__class__.__name__} class type')
+
 
     def setupSource(self, sourceDict: dict):
         printInfo(f'Setup Source: {self.sourceName}')
 
+
     def addData(self, dataDict: dict):
         printInfo("Add Data")
+
 
     def splitData(self, splitDict: dict):
         """
@@ -87,3 +90,17 @@ class dataInputBase:
                                                                                      shuffle=shuffle)
 
         print("done splitting data")
+
+
+    def clearIndependentVars(self):
+        printInfo("Clearing Independent Variables")
+
+        for colName in self.__dataFrame.columns[1:]:
+            print(f'\tSo Long: {colName}')
+            self.__dataFrame.drop(colName, axis=1, inplace=True)
+        print("cleared")
+
+
+
+
+

@@ -7,8 +7,11 @@ import pathlib
 from datetime import datetime
 from compute.dataInput.dataObjFactory import dataObjFactory
 import compute.computeBase
+
 import compute.decisionTree
 import compute.neuralNetwork
+import compute.logisticRegression
+from compute.loging import printError
 
 
 def jsonParser(filename):
@@ -32,7 +35,12 @@ def jsonParser(filename):
     elif "neuralNetwork" in jsonDict.keys():
         compElement = compute.neuralNetwork.NeuralNetwork(**jsonDict["neuralNetwork"])
 
+    elif "logisticRegression" in jsonDict.keys():
+        compElement = compute.logisticRegression.LogisticRegression(**jsonDict["logisticRegression"])
 
+    else:
+        printError("No computation type provided")
+        return # kick out as this has failed with nothing to do
 
 
     # Where do we send all the data?
