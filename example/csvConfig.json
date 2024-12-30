@@ -1,0 +1,23 @@
+{
+  "dataSource": {
+    "csvFile": {
+    },
+    "data": {
+      "filePath": "demo/iris.csv"
+    },
+    "training": {
+      "split": 3,
+      "randomSeed": 1234,
+      "testSizePercentage": 30
+    }
+  },
+  "decisionTree": {
+    "maxTreeDepth": 3,
+    "maxFeatures": 2
+  },
+  "output": {
+    "saveJson": 1,
+    "directory" : "~/decTreeResults/Testing",
+    "timestamp" : 1
+  }
+}
