@@ -20,6 +20,10 @@ class computeBase():
         self.dataSource = dof.getDataInputSource()
 
 
+    def __str__(self):
+        return f"{self.__class__.__name__}"
+
+
     def compute(self, outputDirectory: str):
         printInfo("it's more fun to compute")
 

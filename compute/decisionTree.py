@@ -40,13 +40,11 @@ class DecisionTree(compute.computeBase.computeBase):
         Returns: tree
         """
 
-
-
         # All the added terms, are the features we want to base the tree off of
         features = list(self.dataSource.searchDict.keys())
 
-        X = self.dataSource.dataFrame[features]
-        y = self.dataSource.dataFrame['PDC_NON_ADHR']
+        X = self.X_train
+        y = self.Y_train
 
 
         # Create the model
