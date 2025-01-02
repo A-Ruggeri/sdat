@@ -14,4 +14,4 @@ def printError(errorString : str):
     print(conColors.RED + "ERROR: " + errorString + conColors.ENDC)
 
 def printInfo(infoString : str):
-    print(conColors.CYAN + infoString + conColors.ENDC)
+    print(conColors.BOLD + conColors.CYAN + infoString + conColors.ENDC)
