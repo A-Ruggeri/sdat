@@ -89,6 +89,8 @@ class dataInputBase:
                                                                                      random_state=randomState,
                                                                                      shuffle=shuffle)
 
+        print(f"Training Size: {len(self.y_train)}")
+        print(f"Testing Size: {len(self.y_test)}")
         print("done splitting data")
 
 

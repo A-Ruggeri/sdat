@@ -43,8 +43,8 @@ class DecisionTree(compute.computeBase.computeBase):
         # All the added terms, are the features we want to base the tree off of
         features = list(self.dataSource.searchDict.keys())
 
-        X = self.X_train
-        y = self.Y_train
+        X = self.dataSource.X_test
+        y = self.dataSource.y_test
 
 
         # Create the model
