@@ -4,20 +4,24 @@ import pandas
 import sklearn
 from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import GridSearchCV
 import matplotlib.pyplot as plt
+
+from compute.loging import printInfo, printStd
 
 
 class DecisionTree(compute.computeBase.computeBase):
     def __init__(self, **kwargs):
         super(DecisionTree, self).__init__()
 
-        print("Decision Tree")
+        printInfo("Decision Tree")
 
         # Default tuning parameters
         self.maxTreeDepth = 3
         self.minSplitNum = 2
         self.maxFeatures = 1
         self.randomSeed = None
+        self.gridSearch = False
 
         # Change from default values based on json
         self.__dict__.update(kwargs)
@@ -43,16 +47,40 @@ class DecisionTree(compute.computeBase.computeBase):
         # All the added terms, are the features we want to base the tree off of
         features = list(self.dataSource.searchDict.keys())
 
-        X = self.dataSource.X_test
-        y = self.dataSource.y_test
+        xTrain = self.dataSource.x_train
+        yTrain = self.dataSource.y_train
 
 
-        # Create the model
-        self.__dtree = DecisionTreeClassifier(max_depth = self.maxTreeDepth,
-                                       min_samples_split = self.minSplitNum,
-                                       max_features = self.maxFeatures,
-                                       random_state = self.randomSeed)
-        self.__dtree = self.__dtree.fit(X, y)
+        self.__dtree = DecisionTreeClassifier()
+
+        # Grid Search YES!
+        if(self.gridSearch != False):
+            printInfo("Grid Search: Enabled")
+            param_grid = {
+                'criterion': ['gini', 'entropy'],
+                'max_depth': self.maxTreeDepth,
+                'min_samples_split': self.minSplitNum,
+                'max_features': self.maxFeatures,
+            }
+
+            gridSearch = GridSearchCV(self.__dtree, param_grid, cv=5)
+            gridSearch.fit(xTrain, yTrain)
+
+            printStd(f'Best parameters: {gridSearch.best_params_}')
+            self.__dtree = gridSearch.best_estimator_
+            self.maxTreeDepth = gridSearch.best_params_["max_depth"]    # Needed for figure size computation
+
+        # No grid search
+        else:
+            printInfo("Grid Search: Disabled")
+            # Create the model
+            self.__dtree = DecisionTreeClassifier(max_depth = self.maxTreeDepth,
+                                           min_samples_split = self.minSplitNum,
+                                           max_features = self.maxFeatures,
+                                           random_state = self.randomSeed)
+
+            self.__dtree = self.__dtree.fit(xTrain, yTrain)
+
 
 
         # Create graphviz
@@ -77,7 +105,6 @@ class DecisionTree(compute.computeBase.computeBase):
         else:
             plt.show()
 
-
         # Tree text output
         tree_rules = tree.export_text(self.__dtree, feature_names=list(features))
         if outputFolder is not None:
@@ -90,9 +117,13 @@ class DecisionTree(compute.computeBase.computeBase):
         # All done!
         return tree
 
+    def output(self, outputFolder):
+        print("Output Decision Tree")
+        #todo: this is probably a worth while member
+
 
     def test(self):
-        y_pred = self.__dtree.predict(self.dataSource.X_test)
+        y_pred = self.__dtree.predict(self.dataSource.x_test)
 
         accuracy = sklearn.metrics.accuracy_score(self.dataSource.y_test, y_pred)
         print(f'Accuracy: {accuracy}')

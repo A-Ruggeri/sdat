@@ -1,5 +1,6 @@
 # SEER Database Analysis Tools
 
+![GitHub repo size](https://img.shields.io/github/repo-size/A-Ruggeri/sdat)
 
 
 ## Overview
@@ -65,11 +66,15 @@ The next element is for a computation to run with the provided data based on the
 ### Decision Tree
 Arguments depend on the 
 
-| Name         | Value | Description                                         |
-|--------------|-------|-----------------------------------------------------|
-| maxTreeDepth | int   | Tree depth                                          |
-| maxFeatures  | int   | Max number of feature to be used                    |
-| randomSeed   | int   | Provide fixed seed value for deterministic results  |
+| Name         | Value        | Description                                                                    |
+|--------------|--------------|--------------------------------------------------------------------------------|
+| maxTreeDepth | int \ array  | Tree depth                                                                     |
+| maxFeatures  | int \ array  | Max number of feature to be used                                               |
+| minSplitNum  | int \ array  | Minium Split Value                                                             |
+| randomSeed   | int          | Provide fixed seed value for deterministic results                             |
+| gridSearch   | int \ bool   | When set to '1' or 'True', will enable gride search with the provided array values |
+
+NOTE: When gridSearch is enabled, all DT arguments listed as such need to be array values (even if they are singular)
 
 ### Logistic Regression
 
