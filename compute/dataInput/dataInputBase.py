@@ -18,8 +18,8 @@ class dataInputBase:
     def __init__(self,  jsonConfig: dict, **kwargs):
         self.searchDict = dict()                # dict to field names : field named + query settings
         self.dataFrame: pandas.DataFrame        # primary dataframe, holds all data read from database
-        self.X_train: pandas.DataFrame
-        self.X_test: pandas.DataFrame
+        self.x_train: pandas.DataFrame
+        self.x_test: pandas.DataFrame
         self.y_train = None
         self.y_test = None
 
@@ -82,7 +82,7 @@ class dataInputBase:
 
         features = list(self.searchDict.keys())
 
-        self.X_train, self.X_test, self.y_train, self.y_test = sklearn.model_selection.train_test_split(
+        self.x_train, self.x_test, self.y_train, self.y_test = sklearn.model_selection.train_test_split(
                                                                               self.dataFrame[features],
                                                                                      self.dataFrame['PDC_NON_ADHR'],
                                                                                      train_size=testSizePerc,
