@@ -76,6 +76,7 @@ class dataInputBase:
 
         if "testSizePercentage" in splitDict:
             testSizePerc = splitDict["testSizePercentage"]
+            testSizePerc = testSizePerc/100; # Need it as a 0<>1 based float for % split
 
         if "randomSeed" in splitDict:
             randomState = splitDict["randomSeed"]
