@@ -25,6 +25,10 @@ class dataInputBase:
 
         self.trainingFrame: pandas.DataFrame    # Training dataframe
         self.testingFrame: pandas.DataFrame     # Testing dataframe
+        self.targetName = "target"
+
+        if "targetName" in jsonConfig:
+            self.targetName = jsonConfig["targetName"]
 
         # Setup data source
         self.setupSource(jsonConfig[self.sourceName])
@@ -84,7 +88,7 @@ class dataInputBase:
 
         self.x_train, self.x_test, self.y_train, self.y_test = sklearn.model_selection.train_test_split(
                                                                               self.dataFrame[features],
-                                                                                     self.dataFrame['PDC_NON_ADHR'],
+                                                                                     self.dataFrame[self.targetName],
                                                                                      train_size=testSizePerc,
                                                                                      random_state=randomState,
                                                                                      shuffle=shuffle)

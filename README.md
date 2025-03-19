@@ -23,7 +23,8 @@ The following is an example of a json configuration file used for tuning a decis
     "mongoDb": {
       "ip": "localhost",
       "port": "27017"
-    }
+    },
+    "targetName" : "IdValue"
   },
   "decisionTree": {
     "maxTreeDepth": 3,
@@ -32,7 +33,13 @@ The following is an example of a json configuration file used for tuning a decis
 }
 ```
 ## dataSource
-Sets where the data will be pulled from
+Contains one of the suboptions listed below, to select where the data will come from.
+
+| Name        | Value        | Description                                                              |
+|-------------|--------------|--------------------------------------------------------------------------|
+| targetName  | str          | Name of target feature loaded from data                                  |
+| data Source | json Element | Element with configure info for loading data ('MongoDb', 'csvFile', ect) |
+
 
 ### mongoDb
 pull data from mongo db

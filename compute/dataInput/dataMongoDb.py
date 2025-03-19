@@ -42,7 +42,7 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
         self.__db = self.__client['seer']
         self.collcPdcMpr = self.__db['PDESAF_pdc_mpr_results']
 
-        print("\tGet PIDS for PDC")
+        print(f"\tGet PIDs for {self.targetName}")
         pdcValues = dict()
         pdcRes = self.collcPdcMpr.find({'INCLUDED': True}).sort("PATIENT_ID", pymongo.DESCENDING)
 
@@ -55,15 +55,15 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
                 pdcValues[pid] = 0
 
         self.dataFrame = pandas.DataFrame(
-            {'PIDS': list(pdcValues.keys()), 'PDC_NON_ADHR': list(list(pdcValues.values()))})
+            {'PIDS': list(pdcValues.keys()), self.targetName : list(list(pdcValues.values()))})
         self.dataFrame.set_index('PIDS', verify_integrity=True, drop=True, inplace=True)
 
-        print(f"\tPDC PIDS: {len(self.dataFrame.index)}")
+        print(f"\tPDC PIDs: {len(self.dataFrame.index)}")
 
 
 
     def addData(self, dataDict: dict):
-        print("Add Data")
+        print("Add MongoDB Data")
 
         for col in dataDict:
             for field in dataDict[col]:
