@@ -1,6 +1,5 @@
 #imports
 
-import sys
 import os
 import json
 import pathlib
@@ -10,8 +9,8 @@ import compute.computeBase
 
 import compute.decisionTree
 import compute.neuralNetwork
-import compute.logisticRegression
-from compute.loging import printError
+# import compute.logisticRegression
+from compute.helper.loging import printError
 
 
 def jsonParser(filename):
@@ -34,9 +33,9 @@ def jsonParser(filename):
 
     elif "neuralNetwork" in jsonDict.keys():
         compElement = compute.neuralNetwork.NeuralNetwork(**jsonDict["neuralNetwork"])
-
-    elif "logisticRegression" in jsonDict.keys():
-        compElement = compute.logisticRegression.LogisticRegression(**jsonDict["logisticRegression"])
+    #
+    # elif "logisticRegression" in jsonDict.keys():
+    #     compElement = compute.logisticRegression.LogisticRegression(**jsonDict["logisticRegression"])
 
     else:
         printError("No computation type provided")
