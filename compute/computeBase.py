@@ -1,6 +1,6 @@
 #imports
 import compute.dataInput.dataObjFactory
-from compute.loging import printInfo
+from compute.helper.loging import printInfo
 
 
 class computeBase():

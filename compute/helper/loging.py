@@ -19,6 +19,9 @@ def printError(errorString : str):
 def printWarning(warningString : str):
     print(conColors.YELLOW + "WARN: " + warningString + conColors.ENDC)
 
+def printDebug(debugString : str):
+    print(conColors.BLUE + "DEBUG: " + debugString + conColors.ENDC)
+
 def printInfo(infoString : str):
     print(conColors.BOLD + conColors.CYAN + infoString + conColors.ENDC)
 

@@ -3,7 +3,7 @@ import pymongo
 import pandas
 import numpy
 import compute.dataInput.dataInputBase
-from compute.loging import printError
+from compute.helper.loging import printError
 
 
 class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):

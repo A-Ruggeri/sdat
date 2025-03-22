@@ -1,13 +1,13 @@
 #import
 import compute.computeBase
-import pandas
 import sklearn
 from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import GridSearchCV
 import matplotlib.pyplot as plt
+import json
 
-from compute.loging import printInfo, printStd
+from compute.helper.loging import printInfo, printStd, printDebug
 
 
 class DecisionTree(compute.computeBase.computeBase):
@@ -55,7 +55,7 @@ class DecisionTree(compute.computeBase.computeBase):
 
         # Grid Search YES!
         if(self.gridSearch != False):
-            printInfo("Grid Search: Enabled")
+            printDebug("Grid Search: Enabled")
             param_grid = {
                 'criterion': ['gini', 'entropy'],
                 'max_depth': self.maxTreeDepth,
@@ -70,9 +70,13 @@ class DecisionTree(compute.computeBase.computeBase):
             self.__dtree = gridSearch.best_estimator_
             self.maxTreeDepth = gridSearch.best_params_["max_depth"]    # Needed for figure size computation
 
+            if outputFolder is not None:
+                with open(f"{outputFolder}/grid_results.json", "w+") as file:
+                    file.write(str(gridSearch.cv_results_))
+
         # No grid search
         else:
-            printInfo("Grid Search: Disabled")
+            printDebug("Grid Search: Disabled")
             # Create the model
             self.__dtree = DecisionTreeClassifier(max_depth = self.maxTreeDepth,
                                            min_samples_split = self.minSplitNum,
