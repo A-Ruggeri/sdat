@@ -1,0 +1,33 @@
+{
+  "dataSource":
+  {
+    "csvFile":
+    {
+      "filePath": "/home/andrew/PycharmProjects/sdat/example/iris.csv"
+    },
+
+    "data":
+    {
+      "NOP": "NOP"
+    },
+
+    "targetName": "varietyNo",
+
+    "training":
+    {
+      "split": 3,
+      "randomSeed": 1234,
+      "testSizePercentage": 30,
+      "shuffle": 1
+    }
+  },
+  "neuralNetwork" : {
+    "nop" : "nop"
+  },
+  "output":
+  {
+    "saveJson": 1,
+    "directory" : "/home/andrew/decTreeResults/NN_Testing",
+    "timestamp" : 1
+  }
+}
