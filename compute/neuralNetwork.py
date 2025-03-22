@@ -1,7 +1,8 @@
 # imports
 import torch
 import compute.computeBase
-from compute.loging import printInfo
+import matplotlib.pyplot as plt
+from compute.helper.loging import printInfo
 
 
 class neuralNetworkModel(torch.nn.Module):
@@ -18,22 +19,22 @@ class neuralNetworkModel(torch.nn.Module):
 
         # Read from dict
         self.__dict__.update(kwargs)
+        super().__init__()
+        self.l1 = torch.nn.Linear(4, 64)  # Input layer to 64 neurons
+        self.act1 = torch.nn.ReLU()       # ReLU activation function
+        self.l2 = torch.nn.Linear(64, 16) # 64 neurons to 16 neurons
+        self.drop = torch.nn.Dropout(0.2) # Dropout for regularization
+        self.act2 = torch.nn.ReLU()       # Another ReLU
+        self.l3 = torch.nn.Linear(16, 3)  # Output layer to 3 neurons (classes)
 
-        # Layer Sequence
-        # self.torchSeq = torch.nn.Sequential()
-
-        # Layer 1
-        self.layer_1 = torch.nn.Linear(inputDim, hiddenDim)
-        torch.nn.init.kaiming_uniform_(self.layer_1.weight, nonlinearity='relu')
-        # self.torchSeq.add(self.layer_1)
-
-        # Layer 2
-        self.layer_2 = torch.nn.Linear(hiddenDim, outputDim)
-        # self.torchSeq.add(self.layer_2)
 
     def forward(self, x):
-        x = torch.nn.functional.relu(self.layer_1(x))
-        x = torch.nn.functional.relu(self.layer_2(x))
+        x = self.l1(x)
+        x = self.act1(x)
+        x = self.l2(x)
+        x = self.drop(x)
+        x = self.act2(x)
+        x = self.l3(x)
         return x
 
 
@@ -46,8 +47,8 @@ class NeuralNetwork(compute.computeBase.computeBase):
         print(self.model)
 
         # Config parameters
-        self.learningRate = 0.1
-        self.numEpochs = 1000
+        self.learningRate = 0.002
+        self.numEpochs = 400
 
         # Read from dict and update
         self.__dict__.update(kwargs)
@@ -60,25 +61,49 @@ class NeuralNetwork(compute.computeBase.computeBase):
     def calculate(self, outputFolder):
         printInfo("Calculating NeuralNetwork")
 
-        torchX = torch.tensor(self.dataSource.X_test.values, dtype=torch.float32)
-        torchY = torch.tensor(self.dataSource.y_test.values, dtype=torch.int8)
+        # self.model = neuralNetworkModel()
 
-        lossFunc = torch.nn.BCELoss()
-        optimizer = torch.optim.Adam(self.model.parameters(), lr=0.001)
+        self.torchTrX = torch.tensor(self.dataSource.x_train.values, dtype=torch.float32)
+        self.torchTrY = torch.tensor(self.dataSource.y_train.values, dtype=torch.long)
+
+        # Move to GPU or CPU
+        self.model.to(self.torchDevice)
+        self.torchTrX = self.torchTrX.to(self.torchDevice)
+        self.torchTrY = self.torchTrY.to(self.torchDevice)
+
+
+        loss_arr = []
+        loss_fn = torch.nn.CrossEntropyLoss()
+        optimizer = torch.optim.Adam(self.model.parameters(), lr=self.learningRate)
 
         for epoch in range(self.numEpochs):
-            for torchX, torchY in zip(torchX, torchY):
-                optimizer.zero_grad()
+            ypred = self.model(self.torchTrX)
+            loss = loss_fn(ypred, self.torchTrY)
+            loss_arr.append(loss.item())
+            loss.backward()
+            optimizer.step()
+            optimizer.zero_grad()
 
-                pred = self.model(torchX)
-                loss = lossFunc(pred, torchY)
-                loss.backward()
-                optimizer.step()
+        printInfo("Training Finished!")
+
+        plt.plot(loss_arr)
+        plt.show()
+
 
         printInfo("Training Finished!")
 
 
 
 
+
     def test(self):
-        print("Testing...")
+        printInfo("Testing NeuralNetwork")
+
+        self.torchTestX = torch.tensor(self.dataSource.x_test.values, dtype=torch.float32)
+        self.torchTestX.to(self.torchDevice)
+
+        self.torchPredY = self.model(self.torchTestX)
+
+        testY = torch.argmax(self.torchPredY, dim=1)
+
+        #
