@@ -2,7 +2,7 @@
 import os.path
 
 import pandas
-from compute.loging import printError, printInfo
+from compute.helper.loging import printError, printInfo
 from compute.dataInput.dataInputBase import dataInputBase
 
 
@@ -12,25 +12,30 @@ class dataCsvFile(dataInputBase):
 
 
     def __init__(self, jsonConfig: dict, **kwargs):
+        self.filePath = ""
+        self.__dict__.update(jsonConfig[self.sourceName])
+
         super(dataCsvFile, self).__init__(jsonConfig)
 
 
     def addData(self, dataDict: dict):
-        filePath = ""
 
         # Change from default values based on json
         self.__dict__.update(dataDict)
 
-        if filePath == "":
+        if self.filePath == "":
             printError("CSV File Path Not Provided")
             return
 
-        if not os.path.isfile(filePath):
+        if not os.path.isfile(self.filePath):
             printError("CSV File Path invalid")
             return
 
+        printInfo(f"Loading data from: {self.filePath}")
+
         # let's try to read it
-        self.dataframe = pandas.read_csv(filePath)
+        self.dataFrame = pandas.read_csv(self.filePath)
+
 
 
 

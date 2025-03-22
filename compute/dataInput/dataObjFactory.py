@@ -30,7 +30,7 @@ class dataObjFactory:
             self.__dataInputSource = compute.dataInput.dataMongoDb.dataMongoDb(jsonDataDict)
 
         elif "csvFile" in jsonDataDict:
-            self.__dataInputSource = compute.dataInput.dataCsvFile.dataCsvFile(jsonDataDict["csvFile"])
+            self.__dataInputSource = compute.dataInput.dataCsvFile.dataCsvFile(jsonDataDict)
 
         else:
             print("No data source element found in JSON")
