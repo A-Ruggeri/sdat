@@ -3,9 +3,20 @@
 # Imports
 import sys
 import os
-from compute.loging import printError, printInfo
+from compute.helper.loging import printError, printInfo, printStd
 from jsonParser import jsonParser
 from textParser import textParser
+
+
+def pathCheck(path):
+    if os.path.isfile(path):
+        return path
+
+    relPath = os.getcwd() + path
+    if os.path.isfile(relPath):
+        return relPath
+
+    return False
 
 
 # ------------------------------------------------------------------
@@ -21,18 +32,24 @@ filePath = sys.argv[1]
 printInfo(f'Running: {filePath}')
 
 # Check if file exists
-if not os.path.isfile(filePath):
-    printError("File not found")
+pathReturn = pathCheck(filePath)
+if pathReturn is False:
+    printError(f"File not found")
     exit(-1)
+
+# Check if absolute or relative
+if pathReturn is not filePath:
+    filePath = pathReturn
+    printStd(f"Path Switched: {filePath}")
 
 # if the file is JSON
 if filePath.endswith(".json"):
-    print(f'json File: {filePath}')
+    printStd(f'json File: {filePath}')
     jsonParser(filePath)
 
 # if the file
 elif filePath.endswith(".txt"):
-    print(f'Text File: {filePath}')
+    printStd(f'Text File: {filePath}')
     textParser(filePath)
 
 else:
@@ -40,5 +57,5 @@ else:
     exit(-1)
 
 # Everything looks good, return and exit
-print("~Et Fin~")
+printInfo("~Et Fin~")
 exit(0)
