@@ -36,6 +36,11 @@ class dataCsvFile(dataInputBase):
         # let's try to read it
         self.dataFrame = pandas.read_csv(self.filePath)
 
+        # Create a list of all the features (remove target from list)
+        self.features = self.dataFrame.columns.tolist()
+        self.features.remove(self.targetName)
+
+
 
 
 

@@ -70,6 +70,10 @@ class dataMongoDb(compute.dataInput.dataInputBase.dataInputBase):
                 for featureName, catagoryStr in field.items():  # this is just 1 element, not sure if needed
                     self.addIndependantVar(col, featureName, catagoryStr)
 
+        # Create a list of all the features (remove target from list)
+        self.features = self.dataFrame.columns.tolist()
+        self.features.remove(self.targetName)
+
 
 
     def addIndependantVar(self, collName, field, binningParam):

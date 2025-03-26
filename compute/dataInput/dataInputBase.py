@@ -16,7 +16,7 @@ class dataInputBase:
     sourceName = "base"
 
     def __init__(self,  jsonConfig: dict, **kwargs):
-        self.searchDict = dict()                # dict to field names : field named + query settings
+        self.features = []                # dict to field names : field named + query settings
         self.dataFrame: pandas.DataFrame        # primary dataframe, holds all data read from database
         self.x_train: pandas.DataFrame
         self.x_test: pandas.DataFrame
@@ -85,10 +85,8 @@ class dataInputBase:
             shuffle = False
 
 
-        features = list(self.searchDict.keys())
-
         self.x_train, self.x_test, self.y_train, self.y_test = sklearn.model_selection.train_test_split(
-                                                                              self.dataFrame[features],
+                                                                              self.dataFrame[self.features],
                                                                                      self.dataFrame[self.targetName],
                                                                                      train_size=testSizePerc,
                                                                                      random_state=randomState,
